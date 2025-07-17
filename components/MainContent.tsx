@@ -1,7 +1,7 @@
 import React from 'react'
 import Button from './ui/Button'
 
-const Card = () => {
+const MainContent = () => {
   return (
     <div className='bg-white rounded-lg p-6 w-[500px] h-[260px]'>
       <div className='border-b-1 border-black w-full max-w-2xl'>
@@ -32,4 +32,4 @@ const Card = () => {
   )
 }
 
-export default Card
+export default MainContent
