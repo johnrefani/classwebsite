@@ -1,11 +1,11 @@
-import MainContent from "@/components/MainContent";
-import StudentList from "@/components/StudentList";
+import ModalConfirmation from "@/components/ModalConfirmation";
+
 
 
 export default function Home() {
   return (
-    <main className="flex items-center justify-center min-h-screen">
-      <StudentList/>
+    <main>
+      <ModalConfirmation/>
     </main>
   );
 }
