@@ -3,7 +3,7 @@ import Button from './ui/Button'
 
 const MainContent = () => {
   return (
-    <main className="flex items-center justify-center min-h-screen">
+    <main>
     <div className='bg-white rounded-lg p-6 w-[500px] h-[260px]'>
       <div className='border-b-1 border-black w-full max-w-2xl'>
         <h2 className='text-2xl font-semibold text-gray-950 mb-4'>Log In</h2>
@@ -20,8 +20,8 @@ const MainContent = () => {
         </div>
       </div>
 
-      <div className='text-right'>
-        <Button/> 
+      <div className='text-right py-7'>
+        <Button text='LOG IN' className='bg-blue-500'/> 
       </div>
       
     </div>
