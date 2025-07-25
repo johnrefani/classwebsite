@@ -7,7 +7,7 @@ interface ButtonProps{
 }
 const Button = ({ className, text, href}: ButtonProps) => {
   return (
-    <a href={href} className={`mt-6 w-[150px] py-2 px-4 text-white rounded-md ${className}`}>
+    <a href={href} className={`mt-6 w-[200px] h-[50px] py-2 px-4 text-white text-center items-center rounded-md  ${className}`} >
       {text}
     </a>
   )
