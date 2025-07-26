@@ -4,8 +4,8 @@ import Button from './Button';
 
 interface ModalProps {
   name: string;
-  onClose: () => void;
-  onConfirm: () => void;
+  onClose?: () => void;
+  onConfirm?: () => void;
 }
 
 const Modal = ({ name, onClose, onConfirm }: ModalProps) => {

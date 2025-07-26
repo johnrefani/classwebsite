@@ -1,12 +1,15 @@
+import { Admin } from "@/components/Admin";
+import LogIn from "@/components/LogIn";
+import ModalPage from "@/components/ModalPage";
 import StudentSearch from "@/components/StudentSearch";
-import Modal from "@/components/ui/Modal";
+
 
 
 
 export default function Home() {
   return (
     <main className="">
-      <StudentSearch />
+      <LogIn/>
     </main>
   );
 }
