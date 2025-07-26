@@ -1,14 +1,11 @@
-import ModalConfirmation from "@/components/ModalConfirmation";
-import StudentSearch from "@/components/StudentSearch";
-import LogIn from "@/components/LogIn";
-import StudentCard from "@/components/ui/StudentCard";
-
+import { Admin } from "@/components/Admin";
+import { Sidebar } from "@/components/ui/sidebar";
 
 
 export default function Home() {
   return (
-    <main className="flex items-center justify-center min-h-screen">
-      <StudentCard text="Class of Butane"/>
+    <main>
+      <Admin/>
     </main>
   );
 }
