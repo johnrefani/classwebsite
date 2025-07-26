@@ -1,20 +1,31 @@
-import React from 'react'
-import Button from './Button'
+import React from 'react';
+import { IoClose } from 'react-icons/io5';
+import Button from './Button';
 
-const Modal = () => {
-  return (
-    <div className='w-[500px] h-[250px] bg-blue-950 rounded-lg gap-4 flex-col'>
-      <h1 className='p-5 text-xl'>Do you want to time in?</h1>
-      <div className='flex items-center justify-center'>
-        <h2 className='text-2xl p-5'>Johnrey Luntayao</h2>
-      </div>
-
-      <div className="p-4 text-right">
-        <Button/>
-      </div>
-      
-    </div>
-  )
+interface ModalProps {
+  onClose?: () => void;
 }
 
-export default Modal
+const Modal = ({ onClose }: ModalProps) => {
+  return (
+    <div className="relative w-full max-w-md bg-white rounded-xl shadow-lg p-6 flex flex-col gap-6 text-center">
+      <button
+        onClick={onClose}
+        className="absolute top-3 right-3 text-gray-500 hover:text-gray-800 transition"
+        aria-label="Close modal"
+      >
+        <IoClose size={24} />
+      </button>
+
+      <h1 className="text-2xl font-semibold text-gray-800">Do you want to time in?</h1>
+
+      <div className="text-blue-600 text-2xl font-bold">Name</div>
+
+      <div className="flex justify-end gap-3 mt-4">
+        <Button text='TIME-IN' className='bg-black-pearl-600' />
+      </div>
+    </div>
+  );
+};
+
+export default Modal;

@@ -1,11 +1,12 @@
-import { Admin } from "@/components/Admin";
-import { Sidebar } from "@/components/ui/sidebar";
+import StudentSearch from "@/components/StudentSearch";
+import Modal from "@/components/ui/Modal";
+
 
 
 export default function Home() {
   return (
-    <main>
-      <Admin/>
+    <main className="">
+      <StudentSearch />
     </main>
   );
 }
