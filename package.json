@@ -17,6 +17,7 @@
     "mongoose": "^8.16.4",
     "motion": "^12.23.9",
     "next": "15.4.1",
+    "node-cron": "^4.2.1",
     "node-modules": "^0.0.1",
     "react": "19.1.0",
     "react-dom": "19.1.0",
