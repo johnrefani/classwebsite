@@ -1,17 +1,51 @@
 "use client";
 import React, { useState, useRef, useEffect } from "react";
+import { ClassInfo } from "@/types";
 
-const Dropdown = () => {
+interface DropdownProps {
+  baseSection: string;
+  onSelect: (section: string) => void;
+}
+
+interface ApiResponse {
+  success: boolean;
+  data?: ClassInfo[];
+  error?: string;
+}
+
+const Dropdown = ({ baseSection, onSelect }: DropdownProps) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [sections, setSections] = useState<string[]>([]);
+  const [selectedSection, setSelectedSection] = useState<string | null>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
+
+  // Fetch sections on mount
+  useEffect(() => {
+    const fetchSections = async () => {
+      try {
+        const response = await fetch(`/api/classinfo/filter?section=${encodeURIComponent(baseSection)}`);
+        const data: ApiResponse = await response.json();
+        if (data.success && data.data) {
+          const uniqueSections = Array.from(new Set(data.data.map((item) => item.section)));
+          setSections(uniqueSections);
+          if (uniqueSections.length > 0) {
+            setSelectedSection(uniqueSections[0]);
+            onSelect(uniqueSections[0]);
+          }
+        } else {
+          console.error(data.error);
+        }
+      } catch (error) {
+        console.error('Error fetching sections:', error);
+      }
+    };
+    fetchSections();
+  }, [baseSection, onSelect]);
 
   // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (
-        dropdownRef.current &&
-        !dropdownRef.current.contains(event.target as Node)
-      ) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
         setIsOpen(false);
       }
     };
@@ -19,13 +53,19 @@ const Dropdown = () => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  const handleSelect = (section: string) => {
+    setSelectedSection(section);
+    onSelect(section);
+    setIsOpen(false);
+  };
+
   return (
     <div className="relative inline-block text-left" ref={dropdownRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="flex items-center justify-between gap-2 px-4 py-2 text-sm font-medium text-gray-800 bg-gray-100 rounded-md hover:bg-gray-200 transition"
       >
-        Dropdown
+        {selectedSection || 'Select Section'}
         <svg
           className={`w-3 h-3 transition-transform ${isOpen ? "rotate-180" : ""}`}
           fill="none"
@@ -40,21 +80,19 @@ const Dropdown = () => {
       {isOpen && (
         <div className="absolute z-10 mt-2 w-40 bg-white rounded-md shadow-md border border-gray-100">
           <ul className="py-1 text-sm text-gray-700">
-            <li>
-              <button className="w-full text-left px-4 py-2 hover:bg-gray-100">
-                Option 1
-              </button>
-            </li>
-            <li>
-              <button className="w-full text-left px-4 py-2 hover:bg-gray-100">
-                Option 2
-              </button>
-            </li>
-            <li>
-              <button className="w-full text-left px-4 py-2 hover:bg-gray-100">
-                Option 3
-              </button>
-            </li>
+            {sections.map((section) => (
+              <li key={section}>
+                <button
+                  onClick={() => handleSelect(section)}
+                  className="w-full text-left px-4 py-2 hover:bg-gray-100"
+                >
+                  {section}
+                </button>
+              </li>
+            ))}
+            {sections.length === 0 && (
+              <li className="px-4 py-2 text-gray-500">No sections found</li>
+            )}
           </ul>
         </div>
       )}

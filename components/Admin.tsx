@@ -2,57 +2,55 @@
 import React, { useState } from "react";
 import { Sidebar, SidebarBody, SidebarLink } from "./ui/sidebar";
 import { IconArrowLeft } from "@tabler/icons-react";
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
-import { MdOutlinePerson2 } from "react-icons/md";
+import { MdOutlineDashboard, MdOutlineAnalytics, MdOutlineInventory, MdOutlineReport, MdOutlineSettings } from "react-icons/md";
 import Image from "next/image";
 import StudentCard from "./ui/StudentCard";
-import Button from "./ui/Button";
 
 export function Admin() {
+  const [activeSection, setActiveSection] = useState("BUTANE");
+
   const links = [
     {
       label: "BUTANE",
       href: "#",
-      icon: (
-        <MdOutlinePerson2 className=" h-5 w-5 shrink-0 text-neutral-700 dark:text-neutral-200" />
-      ),
+      icon: <MdOutlineDashboard className="h-5 w-5 shrink-0 text-neutral-700 dark:text-neutral-200" />,
+      onClick: () => setActiveSection("BUTANE"), 
     },
     {
       label: "PENTANE",
       href: "#",
-      icon: (
-        <MdOutlinePerson2  className="h-5 w-5 shrink-0 text-neutral-700 dark:text-neutral-200" />
-      ),
+      icon: <MdOutlineAnalytics className="h-5 w-5 shrink-0 text-neutral-700 dark:text-neutral-200" />,
+      onClick: () => setActiveSection("PENTANE"),
     },
     {
       label: "METHANE",
       href: "#",
-      icon: (
-        <MdOutlinePerson2  className="h-5 w-5 shrink-0 text-neutral-700 dark:text-neutral-200" />
-      ),
+      icon: <MdOutlineInventory className="h-5 w-5 shrink-0 text-neutral-700 dark:text-neutral-200" />,
+      onClick: () => setActiveSection("METHANE"),
     },
     {
       label: "ETHANE",
       href: "#",
-      icon: (
-        <MdOutlinePerson2  className="h-5 w-5 shrink-0 text-neutral-700 dark:text-neutral-200" />
-      ),
+      icon: <MdOutlineReport className="h-5 w-5 shrink-0 text-neutral-700 dark:text-neutral-200" />,
+      onClick: () => setActiveSection("ETHANE"),
     },
     {
       label: "PROPANE",
       href: "#",
-      icon: (
-        <MdOutlinePerson2  className="h-5 w-5 shrink-0 text-neutral-700 dark:text-neutral-200" />
-      ),
+      icon: <MdOutlineSettings className="h-5 w-5 shrink-0 text-neutral-700 dark:text-neutral-200" />,
+      onClick: () => setActiveSection("PROPANE"),
     },
   ];
+
   const [open, setOpen] = useState(false);
+
   return (
     <div
       className={cn(
         "mx-auto flex w-full flex-1 flex-col overflow-hidden rounded-md border border-neutral-200 bg-gray-100 md:flex-row dark:border-neutral-700 dark:bg-neutral-800",
-        "h-screen",
+        "h-screen"
       )}
     >
       <Sidebar open={open} setOpen={setOpen}>
@@ -61,7 +59,11 @@ export function Admin() {
             {open ? <Logo /> : <LogoIcon />}
             <div className="mt-8 flex flex-col gap-2">
               {links.map((link, idx) => (
-                <SidebarLink key={idx} link={link} />
+                <SidebarLink
+                  key={idx}
+                  link={link}
+                  className={activeSection === link.label ? "bg-neutral-200 dark:bg-neutral-700 rounded-md" : ""}
+                />
               ))}
             </div>
           </div>
@@ -78,53 +80,74 @@ export function Admin() {
           </div>
         </SidebarBody>
       </Sidebar>
-      <Dashboard />
+      <Dashboard activeSection={activeSection} />
     </div>
   );
 }
+
 export const Logo = () => {
   return (
     <a
       href="#"
       className="relative z-20 flex items-center space-x-2 py-1 text-sm font-normal text-white"
     >
-      <Image src="./MAAP.svg" height={40} width={40} alt="logo"/>
+      <Image src="/MAAP.svg" height={40} width={40} alt="logo" />
       <motion.span
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        
       >
         MAAP HERZIVANES
       </motion.span>
     </a>
   );
 };
+
 export const LogoIcon = () => {
   return (
     <a
       href="#"
       className="relative z-20 flex items-center space-x-2 py-1 text-sm font-normal text-black"
     >
-      <Image src="./MAAP.svg" height={20} width={20} alt="logo"/>
+      <Image src="/MAAP.svg" height={20} width={20} alt="logo" />
     </a>
   );
 };
 
-const Dashboard = () => {
+const Dashboard = ({ activeSection }: { activeSection: string }) => {
   return (
-    <div className="flex flex-1">
-      <div className="flex h-full w-full  gap-2 rounded-tl-2xl border border-neutral-200 p-2 md:p-10 bg-gray-100">
-        <div>
-            <StudentCard text="BUTANE"/>
-        </div>
-        
-        <div className="flex flex-col gap-2">
-           <Button text="ADD STUDENT" className="bg-blue-500"/>
-            <Button text="EDIT STUDENT" className="bg-green-500"/>
-            <Button text="DELETE STUDENT" className="bg-red-500"/>
-        </div>
-
-      </div>
+    <div className="flex flex-1 flex-col p-6 overflow-auto bg-white dark:bg-neutral-900">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.3 }}
+        className="w-full max-w-4xl mx-auto"
+      >
+        {activeSection === "BUTANE" && (
+          <div>
+            <StudentCard text="Butane"/>
+          </div>
+        )}
+        {activeSection === "PENTANE" && (
+          <div>
+            <StudentCard text="Pentane"/>
+          </div>
+        )}
+        {activeSection === "METHANE" && (
+          <div>
+            <StudentCard text="Methane"/>
+          </div>
+        )}
+        {activeSection === "ETHANE" && (
+          <div>
+            <StudentCard text="Ethane"/>
+          </div>
+        )}
+        {activeSection === "PROPANE" && (
+          <div>
+            <StudentCard text="Propane"/>
+          </div>
+        )}
+      </motion.div>
     </div>
   );
 };
