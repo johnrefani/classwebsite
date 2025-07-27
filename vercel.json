@@ -1,14 +1,10 @@
 {
-  "cron": [
-    {
-      "path": "/api/classinfo/reset",
-      "schedule": "0 12 * * *",
-      "method": "POST"
+  "functions": {
+    "api/classinfo/reset.js": {
+      "schedule": "0 12 * * *"
     },
-    {
-      "path": "/api/classinfo/reset",
-      "schedule": "0 18 * * *",
-      "method": "POST"
+    "api/classinfo/reset-2.js": {
+      "schedule": "0 18 * * *"
     }
-  ]
+  }
 }
