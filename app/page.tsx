@@ -1,3 +1,4 @@
+import ModalPage from "@/components/ModalPage";
 import StudentSearch from "@/components/StudentSearch";
 
 

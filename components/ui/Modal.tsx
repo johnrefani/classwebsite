@@ -10,7 +10,7 @@ interface ModalProps {
 
 const Modal = ({ name, onClose, onConfirm }: ModalProps) => {
   return (
-    <div className="relative w-full max-w-md bg-white rounded-xl shadow-lg p-6 flex flex-col gap-6 text-center">
+    <div className="relative w-full max-w-xs md:max-w-sm lg:max-w-md bg-white rounded-xl shadow-lg p-6 flex flex-col gap-6 text-center">
       <button
         onClick={onClose}
         className="absolute top-3 right-3 text-gray-500 hover:text-gray-800 transition"
@@ -19,9 +19,9 @@ const Modal = ({ name, onClose, onConfirm }: ModalProps) => {
         <IoClose size={24} />
       </button>
 
-      <h1 className="text-2xl font-semibold text-gray-800">Do you want to time in?</h1>
+      <h1 className="text-md md:text-xl lg:text-2xl font-semibold text-gray-800">Do you want to time in?</h1>
 
-      <div className="text-blue-600 text-2xl font-bold">{name}</div>
+      <div className="text-blue-600 text-md md:text-xl lg:text-2xl font-bold">{name}</div>
 
       <div className="flex justify-end gap-3 mt-4">
         <Button text="TIME-IN" className="bg-black-pearl-600" onClick={onConfirm} />

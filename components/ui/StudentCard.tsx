@@ -140,7 +140,7 @@ const StudentCard = ({ text }: StudentClass) => {
   };
 
   return (
-    <div className="rounded-lg p-6 w-[550px] h-[750px] shadow-lg bg-white flex flex-col gap-4">
+    <div className="rounded-lg p-6 w-full md:w-[550px] h-screen md:h-[750px] shadow-lg bg-white flex flex-col gap-4">
       <div className="w-full max-w-2xl flex justify-between">
         <h2 className="text-2xl font-bold text-black-pearl-950 mb-4">
           Class of {selectedSection || text}

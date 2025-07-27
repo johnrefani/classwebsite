@@ -44,7 +44,7 @@ const Login = () => {
           <div className="mb-4 text-red-500 text-sm">{error}</div>
         )}
         <form onSubmit={handleSubmit}>
-          <div className="grid grid-cols-2 gap-6 mb-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
             <div>
               <label className="block text-sm font-medium text-black-pearl-950 mb-1">
                 Username
