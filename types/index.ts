@@ -9,7 +9,8 @@ export interface ClassInfo {
 }
 
 export interface User {
-  _id: number;
+  _id?: Number;
   username: string;
   password: string;
 }
+

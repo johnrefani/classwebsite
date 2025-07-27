@@ -1,12 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { Sidebar, SidebarBody, SidebarLink } from "./ui/sidebar";
-import {
-  IconArrowLeft,
-  IconBrandTabler,
-  IconSettings,
-  IconUserBolt,
-} from "@tabler/icons-react";
+import { IconArrowLeft } from "@tabler/icons-react";
 import { motion } from "motion/react";
 import { cn } from "@/lib/utils";
 import { MdOutlinePerson2 } from "react-icons/md";
@@ -57,7 +52,7 @@ export function Admin() {
     <div
       className={cn(
         "mx-auto flex w-full flex-1 flex-col overflow-hidden rounded-md border border-neutral-200 bg-gray-100 md:flex-row dark:border-neutral-700 dark:bg-neutral-800",
-        "h-screen", // for your use case, use `h-screen` instead of `h-[60vh]`
+        "h-screen",
       )}
     >
       <Sidebar open={open} setOpen={setOpen}>
@@ -115,11 +110,10 @@ export const LogoIcon = () => {
   );
 };
 
-// Dummy dashboard component with content
 const Dashboard = () => {
   return (
     <div className="flex flex-1">
-      <div className="flex h-full w-full  gap-2 rounded-tl-2xl border border-neutral-200 bg-white p-2 md:p-10">
+      <div className="flex h-full w-full  gap-2 rounded-tl-2xl border border-neutral-200 p-2 md:p-10 bg-gray-100">
         <div>
             <StudentCard text="BUTANE"/>
         </div>
