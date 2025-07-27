@@ -62,4 +62,4 @@ const Login = () => {
   );
 };
 
-export default MainContent
+export default Login
