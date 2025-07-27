@@ -1,18 +1,46 @@
-import React from 'react';
+"use client";
+import React, { useState } from "react";
 
-interface Student{
-  name?: string,
-  accessDate?: string
+interface Student {
+  id: number;
+  name: string;
+  accessDate?: string;
 }
-const Student = ({name, accessDate}: Student) => {
+
+interface Props {
+  students: Student[];
+}
+
+const StudentList = ({ students }: Props) => {
+  const [selectedId, setSelectedId] = useState<number | null>(null);
+
   return (
-    <div 
-      className="flex justify-between items-center p-4 border border-black hover:bg-gray-50 cursor-pointer w-full"
-    >
-      <span className='text-gray-950'>{name}</span>
-      <span className='text-gray-950'>{accessDate}</span>
+    <div className="space-y-2">
+      {students.map((student) => (
+        <div
+          key={student.id}
+          onClick={() =>
+            setSelectedId(selectedId === student.id ? null : student.id)
+          }
+          className={`flex items-center justify-between px-4 py-3 border rounded-lg cursor-pointer transition 
+            ${
+              selectedId === student.id
+                ? "bg-blue-50 border-blue-400"
+                : "border-black-pearl-200 hover:bg-black-pearl-50"
+            }`}
+        >
+          <div className="text-black-pearl-950 font-medium text-sm">
+            {student.name}
+          </div>
+          {selectedId === student.id && student.accessDate && (
+            <div className="text-black-pearl-900 text-xs">
+              {student.accessDate}
+            </div>
+          )}
+        </div>
+      ))}
     </div>
   );
-}
+};
 
-export default Student;
+export default StudentList;

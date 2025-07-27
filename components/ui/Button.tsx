@@ -1,3 +1,4 @@
+// components/ui/Button.tsx
 import React from 'react';
 
 interface ButtonProps {
@@ -6,36 +7,44 @@ interface ButtonProps {
   href?: string;
   onClick?: () => void;
   type?: 'button' | 'submit' | 'reset';
+  disabled?: boolean; // Added to handle loading state
 }
 
 const Button = ({
   className = '',
   text,
-  href = '#',
+  href,
   onClick,
   type = 'button',
+  disabled = false,
 }: ButtonProps) => {
   const sharedClasses = `
-    mt-6 
     flex items-center justify-center
-    text-white text-center font-medium
-    rounded-md transition-all duration-200 active:scale-95
-    w-[150px] h-[45px]
-    sm:w-[180px] sm:h-[50px]
-    md:w-[200px] md:h-[55px]
+    text-white text-center font-medium text-sm
+    rounded-md shadow-sm
+    transition-all duration-150
+    focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500
+    bg-black-pearl-600 hover:bg-black-pearl-700
+    px-4 py-2
+    ${disabled ? 'opacity-50 cursor-not-allowed' : ''}
     ${className}
   `;
 
-  if (onClick) {
+  if (onClick || type !== 'button') {
     return (
-      <button onClick={onClick} className={sharedClasses} type={type}>
+      <button
+        onClick={onClick}
+        className={sharedClasses}
+        type={type}
+        disabled={disabled}
+      >
         {text}
       </button>
     );
   }
 
   return (
-    <a href={href} className={sharedClasses}>
+    <a href={href || '#'} className={sharedClasses}>
       {text}
     </a>
   );
