@@ -106,14 +106,14 @@ const SearchBar = () => {
   };
 
   return (
-    <div className="w-full max-w-xl">
+    <div className="w-full max-w-sm md:max-w-lg lg:max-w-xl">
       {/* Search Input */}
       <div className="bg-white border border-gray-300 rounded-xl flex items-center px-4 py-2 shadow-sm focus-within:ring-2 focus-within:ring-blue-300 transition-all">
         <input
           type="text"
           placeholder="Search your name..."
           aria-label="Search"
-          className="flex-grow bg-transparent outline-none text-gray-800 placeholder-gray-500 text-base"
+          className="flex-grow bg-transparent outline-none text-gray-800 placeholder-gray-500 text-xs md:text-sm lg:text-base"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
         />
@@ -145,8 +145,8 @@ const SearchBar = () => {
                 }
               >
                 <div className="font-medium text-gray-900">{result.student.name}</div>
-                <div className="text-sm text-gray-500">Section: {result.section}</div>
-                <div className="text-sm text-gray-400">
+                <div className="text-xs md:text-sm text-gray-500">Section: {result.section}</div>
+                <div className="text-xs md:text-sm text-gray-400">
                   Time-in: {result.student.timeIn || 'Not yet timed-in'}
                 </div>
               </li>

@@ -88,7 +88,7 @@ export function Admin() {
                 <SidebarLink
                   key={idx}
                   link={link}
-                  className={activeSection === link.label ? "bg-neutral-200 dark:bg-neutral-700 rounded-md" : ""}
+                  className={activeSection === link.label ? "bg-black-pearl-600  px-1 rounded-md" : ""}
                 />
               ))}
             </div>
@@ -142,7 +142,7 @@ export const LogoIcon = () => {
 
 const Dashboard = ({ activeSection }: { activeSection: string }) => {
   return (
-    <div className="flex flex-1 flex-col p-6 overflow-auto bg-white dark:bg-neutral-900">
+    <div className="flex flex-1 flex-col p-6 overflow-auto bg-white ">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
