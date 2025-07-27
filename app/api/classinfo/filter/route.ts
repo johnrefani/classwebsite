@@ -2,6 +2,12 @@ import { NextResponse } from 'next/server';
 import connectToDatabase from '@/lib/db';
 import { ClassInfo } from '@/types';
 
+// Define a query interface for MongoDB
+interface ClassInfoQuery {
+  section: { $regex: string; $options: string };
+  _id?: number;
+}
+
 export async function GET(request: Request) {
   try {
     const { searchParams } = new URL(request.url);
@@ -18,8 +24,8 @@ export async function GET(request: Request) {
     const db = await connectToDatabase();
     const collection = db.collection<ClassInfo>('classinfo');
 
-    // Build query
-    const query: any = { section: { $regex: `^${section}`, $options: 'i' } };
+    // Build query with specific type
+    const query: ClassInfoQuery = { section: { $regex: `^${section}`, $options: 'i' } };
     if (_id !== undefined) {
       query._id = _id;
     }
