@@ -1,6 +1,4 @@
 {
-  // Remove the cron section
-  // Keep other valid configurations if any, e.g.:
   "routes": [
     {
       "src": "/api/(.*)",
