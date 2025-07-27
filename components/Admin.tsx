@@ -120,30 +120,30 @@ const Dashboard = ({ activeSection }: { activeSection: string }) => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3 }}
-        className="w-full max-w-4xl mx-auto"
+        className="flex items-center justify-center"
       >
         {activeSection === "BUTANE" && (
-          <div>
+          <div className="">
             <StudentCard text="Butane"/>
           </div>
         )}
         {activeSection === "PENTANE" && (
-          <div>
+          <div className="">
             <StudentCard text="Pentane"/>
           </div>
         )}
         {activeSection === "METHANE" && (
-          <div>
+          <div className="">
             <StudentCard text="Methane"/>
           </div>
         )}
         {activeSection === "ETHANE" && (
-          <div>
+          <div className="">
             <StudentCard text="Ethane"/>
           </div>
         )}
         {activeSection === "PROPANE" && (
-          <div>
+          <div className="">
             <StudentCard text="Propane"/>
           </div>
         )}
