@@ -4,7 +4,7 @@ import React, { useState } from "react";
 interface Student {
   id: number;
   name: string;
-  accessDate?: string;
+  'time-in'?: string;
 }
 
 interface Props {
@@ -32,9 +32,9 @@ const StudentList = ({ students }: Props) => {
           <div className="text-black-pearl-950 font-medium text-sm">
             {student.name}
           </div>
-          {selectedId === student.id && student.accessDate && (
+          {selectedId === student.id && student['time-in'] && (
             <div className="text-black-pearl-900 text-xs">
-              {student.accessDate}
+              {student['time-in']}
             </div>
           )}
         </div>
