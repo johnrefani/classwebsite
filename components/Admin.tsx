@@ -7,8 +7,34 @@ import { cn } from "@/lib/utils";
 import { MdOutlineDashboard, MdOutlineAnalytics, MdOutlineInventory, MdOutlineReport, MdOutlineSettings } from "react-icons/md";
 import Image from "next/image";
 import StudentCard from "./ui/StudentCard";
+import { useRouter } from 'next/navigation';
 
 export function Admin() {
+
+  const router = useRouter();
+
+  const handleLogout = async () => {
+    try {
+      const response = await fetch('/api/auth/logout', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        router.push('/admin');
+        router.refresh();
+      } else {
+        console.error('Logout failed:', data.error);
+      }
+    } catch (error) {
+      console.error('Error during logout:', error);
+    }
+  };
+
   const [activeSection, setActiveSection] = useState("BUTANE");
 
   const links = [
@@ -70,11 +96,12 @@ export function Admin() {
           <div>
             <SidebarLink
               link={{
-                label: "LOG OUT",
-                href: "#",
+                label: 'LOG OUT',
+                href: '#',
                 icon: (
                   <IconArrowLeft className="h-5 w-5 shrink-0 text-neutral-700 dark:text-neutral-200" />
                 ),
+                onClick: handleLogout,
               }}
             />
           </div>
