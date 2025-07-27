@@ -118,7 +118,7 @@ const Dashboard = () => {
             <StudentCard text="BUTANE"/>
         </div>
         
-        <div className="grid grid-rows-3">
+        <div className="flex flex-col gap-2">
            <Button text="ADD STUDENT" className="bg-blue-500"/>
             <Button text="EDIT STUDENT" className="bg-green-500"/>
             <Button text="DELETE STUDENT" className="bg-red-500"/>
