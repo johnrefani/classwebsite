@@ -1,9 +1,9 @@
 {
   "functions": {
-    "api/classinfo/reset.js": {
+    "api/classinfo/reset": {
       "schedule": "0 12 * * *"
     },
-    "api/classinfo/reset-2.js": {
+    "api/classinfo/reset": {
       "schedule": "0 18 * * *"
     }
   }
