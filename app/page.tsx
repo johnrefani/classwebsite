@@ -1,13 +1,12 @@
-import ModalPage from "@/components/ModalPage";
-import StudentSearch from "@/components/StudentSearch";
+import StudentCard from "@/components/Card";
 
 
 
 
 export default function Home() {
   return (
-    <main className="">
-      <StudentSearch/>
+    <main className="flex items-center justify-center">
+      <StudentCard />
     </main>
   );
 }

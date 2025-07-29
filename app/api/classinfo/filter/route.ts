@@ -4,7 +4,7 @@ import { ClassInfo } from '@/types';
 
 // Define a query interface for MongoDB
 interface ClassInfoQuery {
-  section: { $regex: string; $options: string };
+  section?: { $regex: string; $options: string };
   _id?: number;
 }
 
@@ -14,18 +14,14 @@ export async function GET(request: Request) {
     const section = searchParams.get('section')?.trim();
     const _id = searchParams.get('_id') ? Number(searchParams.get('_id')) : undefined;
 
-    if (!section) {
-      return NextResponse.json(
-        { success: false, error: 'Section is required' },
-        { status: 400 }
-      );
-    }
-
     const db = await connectToDatabase();
     const collection = db.collection<ClassInfo>('classinfo');
 
     // Build query with specific type
-    const query: ClassInfoQuery = { section: { $regex: `^${section}`, $options: 'i' } };
+    const query: ClassInfoQuery = {};
+    if (section) {
+      query.section = { $regex: `^${section}`, $options: 'i' };
+    }
     if (_id !== undefined) {
       query._id = _id;
     }
