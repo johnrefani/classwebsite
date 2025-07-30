@@ -1,16 +1,16 @@
 "use client";
 import { cn } from "@/lib/utils";
 import React, { useState, createContext, useContext } from "react";
-import { AnimatePresence, motion } from "framer-motion"; // Changed to framer-motion
+import { AnimatePresence, motion } from "framer-motion";
 import { IconMenu2, IconX } from "@tabler/icons-react";
 
 interface Links {
   label: string;
   href: string;
-  icon: React.JSX.Element | React.ReactNode;
-  onClick?: () => void; // Add onClick to the Links interface
+  icon?: React.JSX.Element | React.ReactNode;
+  onClick?: () => void;
+  subLinks?: Links[];
 }
-
 interface SidebarContextProps {
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -165,7 +165,7 @@ export const SidebarLink = ({
   return (
     <a
       href={link.href}
-      onClick={link.onClick} // Add onClick handler
+      onClick={link.onClick}
       className={cn(
         "flex items-center justify-start gap-2 group/sidebar py-2",
         className
