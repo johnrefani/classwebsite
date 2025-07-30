@@ -4,13 +4,14 @@ import { Sidebar, SidebarBody, SidebarLink } from "./ui/sidebar";
 import { IconArrowLeft } from "@tabler/icons-react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
-import { MdOutlineDashboard, MdOutlineAnalytics, MdOutlineInventory, MdOutlineReport, MdOutlineSettings } from "react-icons/md";
 import Image from "next/image";
 import StudentCard from "./ui/StudentCard";
 import { useRouter } from 'next/navigation';
+import { IconChevronDown, IconChevronUp } from "@tabler/icons-react";
+import { MdOutlineEngineering } from "react-icons/md";
+import { LuShipWheel } from "react-icons/lu";
 
 export function Admin() {
-
   const router = useRouter();
 
   const handleLogout = async () => {
@@ -36,37 +37,86 @@ export function Admin() {
   };
 
   const [activeSection, setActiveSection] = useState("BUTANE");
+  const [isBSMAREOpen, setIsBSMAREOpen] = useState(true); // State to toggle BSMARE sub-menu
+  const [isBSMTOpen, setIsBSMTOpen] = useState(false); // State to toggle BSMT sub-menu
+
+  const handleSubLinkClick = (section: string, parent: string) => {
+    setActiveSection(section);
+    if (parent === "BSMARE") {
+      setIsBSMAREOpen(true);
+      setIsBSMTOpen(false);
+    } else if (parent === "BSMT") {
+      setIsBSMAREOpen(false);
+      setIsBSMTOpen(true);
+    }
+  };
 
   const links = [
     {
-      label: "BUTANE",
+      label: "BSMARE",
       href: "#",
-      icon: <MdOutlineDashboard className="h-5 w-5 shrink-0 text-neutral-700 dark:text-neutral-200" />,
-      onClick: () => setActiveSection("BUTANE"), 
+      icon: <MdOutlineEngineering className="h-5 w-5 shrink-0 text-neutral-700 dark:text-neutral-200" />,
+      subLinks: [
+        {
+          label: "BUTANE",
+          href: "#",
+          onClick: () => handleSubLinkClick("BUTANE", "BSMARE"),
+        },
+        {
+          label: "METHANE",
+          href: "#",
+          onClick: () => handleSubLinkClick("METHANE", "BSMARE"),
+        },
+        {
+          label: "PENTANE",
+          href: "#",
+          onClick: () => handleSubLinkClick("PENTANE", "BSMARE"),
+        },
+        {
+          label: "ETHANE",
+          href: "#",
+          onClick: () => handleSubLinkClick("ETHANE", "BSMARE"),
+        },
+        {
+          label: "PROPANE",
+          href: "#",
+          onClick: () => handleSubLinkClick("PROPANE", "BSMARE"),
+        },
+      ],
+      onClick: () => setIsBSMAREOpen(!isBSMAREOpen),
     },
     {
-      label: "PENTANE",
+      label: "BSMT",
       href: "#",
-      icon: <MdOutlineAnalytics className="h-5 w-5 shrink-0 text-neutral-700 dark:text-neutral-200" />,
-      onClick: () => setActiveSection("PENTANE"),
-    },
-    {
-      label: "METHANE",
-      href: "#",
-      icon: <MdOutlineInventory className="h-5 w-5 shrink-0 text-neutral-700 dark:text-neutral-200" />,
-      onClick: () => setActiveSection("METHANE"),
-    },
-    {
-      label: "ETHANE",
-      href: "#",
-      icon: <MdOutlineReport className="h-5 w-5 shrink-0 text-neutral-700 dark:text-neutral-200" />,
-      onClick: () => setActiveSection("ETHANE"),
-    },
-    {
-      label: "PROPANE",
-      href: "#",
-      icon: <MdOutlineSettings className="h-5 w-5 shrink-0 text-neutral-700 dark:text-neutral-200" />,
-      onClick: () => setActiveSection("PROPANE"),
+      icon: <LuShipWheel className="h-5 w-5 shrink-0 text-neutral-700 dark:text-neutral-200" />,
+      subLinks: [
+        {
+          label: "SHAULA",
+          href: "#",
+          onClick: () => handleSubLinkClick("SHAULA", "BSMT"),
+        },
+        {
+          label: "SPICA",
+          href: "#",
+          onClick: () => handleSubLinkClick("SPICA", "BSMT"),
+        },
+        {
+          label: "SCHEDAR",
+          href: "#",
+          onClick: () => handleSubLinkClick("SCHEDAR", "BSMT"),
+        },
+        {
+          label: "POLLUX",
+          href: "#",
+          onClick: () => handleSubLinkClick("POLLUX", "BSMT"),
+        },
+        {
+          label: "PROCYON",
+          href: "#",
+          onClick: () => handleSubLinkClick("PROCYON", "BSMT"),
+        },
+      ],
+      onClick: () => setIsBSMTOpen(!isBSMTOpen),
     },
   ];
 
@@ -85,11 +135,48 @@ export function Admin() {
             {open ? <Logo /> : <LogoIcon />}
             <div className="mt-8 flex flex-col gap-2">
               {links.map((link, idx) => (
-                <SidebarLink
-                  key={idx}
-                  link={link}
-                  className={activeSection === link.label ? "bg-black-pearl-600  px-1 rounded-md" : ""}
-                />
+                <div key={idx}>
+                  <SidebarLink
+                    link={{
+                      ...link,
+                      icon: (
+                        <div className="flex items-center gap-2">
+                          {link.icon}
+                          {open && (
+                            <motion.span
+                              animate={{ rotate: link.label === "BSMARE" ? (isBSMAREOpen ? 180 : 0) : (isBSMTOpen ? 180 : 0) }}
+                              transition={{ duration: 0.2 }}
+                            >
+                              {(link.label === "BSMARE" && isBSMAREOpen) || (link.label === "BSMT" && isBSMTOpen) ? (
+                                <IconChevronUp className="h-5 w-5 shrink-0 text-neutral-700 dark:text-neutral-200" />
+                              ) : (
+                                <IconChevronDown className="h-5 w-5 shrink-0 text-neutral-700 dark:text-neutral-200" />
+                              )}
+                            </motion.span>
+                          )}
+                        </div>
+                      ),
+                    }}
+                    className={activeSection === link.label ? "bg-black-pearl-600 px-1 rounded-md" : ""}
+                  />
+                  {((link.label === "BSMARE" && isBSMAREOpen) || (link.label === "BSMT" && isBSMTOpen)) && link.subLinks && open && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.2 }}
+                      className="ml-6 flex flex-col gap-2"
+                    >
+                      {link.subLinks.map((subLink, subIdx) => (
+                        <SidebarLink
+                          key={subIdx}
+                          link={subLink}
+                          className={activeSection === subLink.label ? "bg-black-pearl-800 px-1 rounded-md" : ""}
+                        />
+                      ))}
+                    </motion.div>
+                  )}
+                </div>
               ))}
             </div>
           </div>
@@ -172,6 +259,31 @@ const Dashboard = ({ activeSection }: { activeSection: string }) => {
         {activeSection === "PROPANE" && (
           <div className="">
             <StudentCard text="Propane"/>
+          </div>
+        )}
+        {activeSection === "SHAULA" && (
+          <div className="">
+            <StudentCard text="Shaula"/>
+          </div>
+        )}
+        {activeSection === "SPICA" && (
+          <div className="">
+            <StudentCard text="Spica"/>
+          </div>
+        )}
+        {activeSection === "SCHEDAR" && (
+          <div className="">
+            <StudentCard text="Schedar"/>
+          </div>
+        )}
+        {activeSection === "POLLUX" && (
+          <div className="">
+            <StudentCard text="Pollux"/>
+          </div>
+        )}
+        {activeSection === "PROCYON" && (
+          <div className="">
+            <StudentCard text="Procyon"/>
           </div>
         )}
       </motion.div>
