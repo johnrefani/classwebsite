@@ -13,8 +13,11 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "MAAP HERZIVANES",
+  title: "HERZIVANEANS CLASS 2028",
   description: "",
+  icons: {
+    icon: "/Logo.jpg",
+  },
 };
 
 export default function RootLayout({
