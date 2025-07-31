@@ -56,19 +56,19 @@ const StudentCard = () => {
   return (
     <div className="mt-4 rounded-lg p-6 w-full md:w-[550px] h-screen md:h-[750px] shadow-lg bg-white flex flex-col gap-4">
       <div className="w-full max-w-2xl flex justify-between">
-        <h2 className="text-2xl font-bold text-black-pearl-950 mb-4">
-          Class of {selectedSection || 'Select a Section'}
+        <h2 className="text-lg md:text-xl lg:text-2xl font-bold text-black-pearl-950 mb-4">
+          {selectedSection}
         </h2>
         <Dropdown onSelect={setSelectedSection} />
       </div>
       <div className="w-full border border-gray-300 px-4 py-2 rounded-lg flex items-center gap-2 bg-white focus-within:ring-2 focus-within:ring-blue-500 transition">
-        <IoSearch className="text-gray-500 text-xl" />
+        <IoSearch className="text-gray-500 text-base md:text-lg lg:text-xl" />
         <input
           type="text"
           placeholder="Search name"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          className="w-full bg-transparent text-base text-gray-800 placeholder-gray-400 focus:outline-none"
+          className="w-full bg-transparent text-sm md:text-base text-gray-800 placeholder-gray-400 focus:outline-none"
         />
       </div>
       <hr className="w-full border-gray-300 border my-2" />

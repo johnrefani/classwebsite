@@ -73,11 +73,11 @@ const StudentList = ({ students, classId, onSelect, selectedId }: Props) => {
                 : 'border-black-pearl-200 hover:bg-black-pearl-50 cursor-pointer'
             }`}
         >
-          <div className="text-black-pearl-950 font-medium text-sm">
+          <div className="text-black-pearl-950 font-medium text-sm md:text-base">
             {student.name}
           </div>
           {student['time-in'] && (
-            <div className="text-black-pearl-900 text-xs">
+            <div className="text-black-pearl-900 text-xs md:text-sm">
               {student['time-in']}
             </div>
           )}
@@ -87,10 +87,10 @@ const StudentList = ({ students, classId, onSelect, selectedId }: Props) => {
       {selectedStudentData && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
           <div className="bg-white rounded-lg p-6 max-w-sm w-full">
-            <h2 className="text-lg text-black-pearl-950 font-semibold mb-4">
+            <h2 className="text-base md:text-lg lg:text-xl text-black-pearl-950 font-semibold mb-4">
               Confirm Time-In
             </h2>
-            <p className="text-sm text-gray-600 mb-6">
+            <p className="text-xs md:text-sm lg:text-base text-gray-600 mb-6">
               Are you sure you want to time-in for <span className='text-black-pearl-600'>{selectedStudentData.name}</span>?
             </p>
             <div className="flex justify-end space-x-2">
@@ -99,13 +99,13 @@ const StudentList = ({ students, classId, onSelect, selectedId }: Props) => {
                   setSelectedStudentData(null);
                   onSelect(null);
                 }}
-                className="px-4 py-2 text-sm text-gray-600 hover:text-gray-800"
+                className="px-4 py-2 text-sm md:text-base text-gray-600 hover:text-gray-800"
               >
                 Cancel
               </button>
               <button
                 onClick={handleTimeIn}
-                className="px-4 py-2 text-sm bg-blue-500 text-white rounded hover:bg-blue-600"
+                className="px-4 py-2 text-sm md:text-base bg-blue-500 text-white rounded hover:bg-blue-600"
               >
                 Confirm
               </button>
