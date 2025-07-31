@@ -37,45 +37,52 @@ const Login = () => {
 
   return (
     <main className="flex items-center justify-center min-h-screen">
-      <div className="bg-white rounded-xl shadow-md p-8 w-full max-w-md">
-        <h2 className="text-2xl font-bold text-black-pearl-950 mb-6">Log In</h2>
-        <div className="w-full h-px bg-gray-300 mb-6"></div>
+      <div className="bg-white rounded-2xl shadow-xl p-10 w-full lg:w-[360px] transform transition-all duration-300 hover:shadow-2xl">
+        <div className="flex justify-center mb-8">
+          <img
+            src="/Logo.jpg"
+            alt="Company Logo"
+            className="h-16 lg:h-24 w-auto object-contain rounded-md"
+          />
+        </div>
+        <h2 className="text-3xl font-bold text-black-pearl-950 mb-4 text-center">Welcome Back</h2>
+        <p className="text-black-pearl-900 text-sm mb-6 text-center">Sign in to your account</p>
         {error && (
-          <div className="mb-4 text-red-500 text-sm">{error}</div>
-        )}
-        <form onSubmit={handleSubmit}>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-            <div>
-              <label className="block text-sm font-medium text-black-pearl-950 mb-1">
-                Username
-              </label>
-              <input
-                className="w-full text-black-pearl-950 px-3 py-2 border border-gray-400 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-150"
-                placeholder="Enter username"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                required
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-black-pearl-950 mb-1">
-                Password
-              </label>
-              <input
-                type="password"
-                className="w-full text-black-pearl-950 px-3 py-2 border border-gray-400 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-150"
-                placeholder="Enter password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-              />
-            </div>
+          <div className="mb-6 p-3 bg-red-100 text-red-700 text-sm rounded-lg text-center">
+            {error}
           </div>
-          <div className="flex justify-end">
+        )}
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Username
+            </label>
+            <input
+              className="w-full px-4 py-3 bg-gray-50 text-gray-900 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition duration-200"
+              placeholder="Enter your username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              required
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Password
+            </label>
+            <input
+              type="password"
+              className="w-full px-4 py-3 bg-gray-50 text-gray-900 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition duration-200"
+              placeholder="Enter your password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
+          <div className="flex justify-center">
             <Button
-              text="LOG IN"
+              text="SIGN IN"
               type="submit"
-              className="bg-black-pearl-600 hover:bg-black-pearl-700 focus:ring-blue-500 px-4 py-2 text-sm font-medium text-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 transition duration-150"
+              className="w-full bg-black-pearl-600 hover:bg-black-pearl-700 text-white font-semibold py-3 px-6 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition duration-200"
             />
           </div>
         </form>

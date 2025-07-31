@@ -205,12 +205,12 @@ export const Logo = () => {
       href="#"
       className="relative z-20 flex items-center space-x-2 py-1 text-sm font-normal text-white"
     >
-      <Image src="/MAAP.svg" height={40} width={40} alt="logo" />
+      <Image src="/Logo.jpg" height={20} width={20} alt="logo" />
       <motion.span
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
       >
-        MAAP HERZIVANES
+        HERZIVANEANS CLASS 2028
       </motion.span>
     </a>
   );
@@ -222,14 +222,14 @@ export const LogoIcon = () => {
       href="#"
       className="relative z-20 flex items-center space-x-2 py-1 text-sm font-normal text-black"
     >
-      <Image src="/MAAP.svg" height={20} width={20} alt="logo" />
+      <Image src="/Logo.jpg" height={20} width={20} alt="logo" />
     </a>
   );
 };
 
 const Dashboard = ({ activeSection }: { activeSection: string }) => {
   return (
-    <div className="flex flex-1 flex-col p-6 overflow-auto bg-white ">
+    <div className="flex flex-1 flex-col p-6 overflow-auto bg-gray-100 ">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
