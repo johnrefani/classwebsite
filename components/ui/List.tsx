@@ -44,6 +44,7 @@ const StudentList = ({ students, classId, onSelect, selectedId }: Props) => {
       if (data.success) {
         onSelect(id); 
         setSelectedStudentData(null); 
+        window.location.reload();
       } else {
         alert(data.error || 'Failed to time in.');
       }

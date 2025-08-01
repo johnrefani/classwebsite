@@ -3,10 +3,14 @@
 import React, { useState, useEffect } from 'react';
 import { IoSearch } from 'react-icons/io5';
 import StudentList from './ui/List';
-import Dropdown from './ui/Dropdown2';
+import Dropdown from './ui/Dropdown';
 import { ClassInfo } from '@/types';
 
-const StudentCard = () => {
+interface StudentClass {
+  text: string;
+}
+
+const StudentCard = ({ text }: StudentClass) => {
   const [students, setStudents] = useState<ClassInfo['students']>([]);
   const [filteredStudents, setFilteredStudents] = useState<ClassInfo['students']>([]);
   const [searchQuery, setSearchQuery] = useState('');
@@ -57,9 +61,9 @@ const StudentCard = () => {
     <div className="mt-4 rounded-lg p-6 w-full md:w-[550px] h-screen md:h-[750px] shadow-lg bg-white flex flex-col gap-4">
       <div className="w-full max-w-2xl flex justify-between">
         <h2 className="text-lg md:text-xl lg:text-2xl font-bold text-black-pearl-950 mb-4">
-          {selectedSection}
+          {selectedSection || text}
         </h2>
-        <Dropdown onSelect={setSelectedSection} />
+        <Dropdown baseSection={text} onSelect={setSelectedSection} />
       </div>
       <div className="w-full border border-gray-300 px-4 py-2 rounded-lg flex items-center gap-2 bg-white focus-within:ring-2 focus-within:ring-blue-500 transition">
         <IoSearch className="text-gray-500 text-base md:text-lg lg:text-xl" />
